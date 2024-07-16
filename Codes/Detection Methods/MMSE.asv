@@ -1,0 +1,5 @@
+function w_v = MMSE(y_v, H_m, cons)
+    W_m = inv(H_m'*H_m+Nt/snr*eye(Nt))*H';
+    r_v = W_m*y_v;
+    [~, w_v] = min((r_v-cons).^2, [], 2);
+end

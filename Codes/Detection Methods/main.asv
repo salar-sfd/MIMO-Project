@@ -17,6 +17,7 @@ H0 = 1;                                                     % Channel Parameter 
 % snrDB_v = 60;
 snrDB_v = 0:40;
 snr_v = 10.^(snrDB_v./10);
+% helper_m = ones(M, Nr).*(0:M-1).';
 isGray = 1;
 
 %% Simulation
@@ -40,22 +41,13 @@ for method = methods_c
             y_v = H_m*x_v + n_v;
 
             % Process
+%             r_v = (round(((pinv(H_m)*y_v)*sqrt(consEnergy)-(1+1j))/2)*2+(1+1j))/sqrt(consEnergy);
+%             w_v = helper_m((r_v==cons).');
             r_v = detector(y_v, H_m, snr, N0, Nt, Nr, cons, method{1});
             rxBit_m((t-1)*Nt+1:t*Nt, :) = biMatrix_m(r_v, :);
         end
         Pe_v = [Pe_v, sum(txBit_m~=rxBit_m, "all")/N];
     end
-    semilogy(snrDB_v, Pe_v, 'Marker', 'x')
+    semilogy(snrDB_v, Pe_v)
     hold on
 end
-title('Pe of Bits')
-xlabel('SNR (dB)')
-ylabel('Pe')
-grid('on')
-legend('Zf', 'MMSE')
-
-%% Repository
-% helper_m = ones(M, Nr).*(0:M-1).';
-
-%             r_v = (round(((pinv(H_m)*y_v)*sqrt(consEnergy)-(1+1j))/2)*2+(1+1j))/sqrt(consEnergy);
-%             w_v = helper_m((r_v==cons).');
