@@ -3,7 +3,7 @@ close all
 
 %% Initialization
 mod = 'qam';                                                % Modulation Name                                 
-methods_c = {'ZF', 'MMSE'};
+methods_c = {'ZF', 'MMSE', 'LRA'};
 % methods_c = {'ZF', 'MMSE', 'LRA', 'SD'};
 
 N = 2.048e5;                                                % Number of Bits 
@@ -14,8 +14,8 @@ Nr = 4;                                                     % Number of Recieve 
 T = N/(k*Nt);                                               % Number of Transmission Cycles
 H0 = 1;                                                     % Channel Parameter Power
 
-% snrDB_v = 60;
-snrDB_v = 0:40;
+% snrDB_v = 1000;
+snrDB_v = 10:45;
 snr_v = 10.^(snrDB_v./10);
 isGray = 1;
 
@@ -40,7 +40,7 @@ for method = methods_c
             y_v = H_m*x_v + n_v;
 
             % Process
-            r_v = detector(y_v, H_m, snr, N0, Nt, Nr, cons, method{1});
+            r_v = detector(y_v, H_m, snr, N0, Nt, Nr, cons, consEnergy, method{1});
             rxBit_m((t-1)*Nt+1:t*Nt, :) = biMatrix_m(r_v, :);
         end
         Pe_v = [Pe_v, sum(txBit_m~=rxBit_m, "all")/N];
@@ -52,7 +52,7 @@ title('Pe of Bits')
 xlabel('SNR (dB)')
 ylabel('Pe')
 grid('on')
-legend('Zf', 'MMSE')
+legend('Zf', 'MMSE', 'LRA')
 
 %% Repository
 % helper_m = ones(M, Nr).*(0:M-1).';
