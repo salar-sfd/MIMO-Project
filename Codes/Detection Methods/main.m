@@ -3,7 +3,7 @@ close all
 
 %% Initialization
 mod = 'qam';                                                % Modulation Name                                 
-methods_c = {'ZF', 'MMSE', 'LRA'};
+methods_c = {'ZF', 'MMSE', 'LRA-ZF'};
 % methods_c = {'ZF', 'MMSE', 'LRA', 'SD'};
 
 N = 2.048e5;                                                % Number of Bits 
@@ -52,7 +52,7 @@ title('Pe of Bits')
 xlabel('SNR (dB)')
 ylabel('Pe')
 grid('on')
-legend('Zf', 'MMSE', 'LRA')
+legend('Zf', 'MMSE', 'LRA-ZF', 'LRA-MMSE')
 
 %% Repository
 % helper_m = ones(M, Nr).*(0:M-1).';

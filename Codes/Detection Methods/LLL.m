@@ -1,7 +1,6 @@
 function [H_m, M_m] = LLL(H_m, delta)
     Ht_m = H_m;
     N = size(H_m, 2);
-    count = 0;
     while(true)
         % Preliminaries
         [~, u_m] = GramSchmidt(H_m);
@@ -26,10 +25,9 @@ function [H_m, M_m] = LLL(H_m, delta)
                 break
             end
         end
-        if flag==0 || count==5
+        if flag==0
             break
         end
-        count = count +1;
     end
     M_m = inv(Ht_m)*H_m;
 end
