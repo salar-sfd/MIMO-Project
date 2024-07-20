@@ -5,6 +5,9 @@ function [cons, consEnergy] = constellation(M, modulationName)
         case 'psk'
             k = 0:(M-1);
             cons = exp(1j*2*pi.*k/M);
+        case 'qpsk'
+            k = 0:3;
+            cons = exp(1j*2*pi.*k/4);
         case 'qam'
             mReal = 2^ceil(log2(sqrt(M)));
             mImag = 2^floor(log2(sqrt(M)));
