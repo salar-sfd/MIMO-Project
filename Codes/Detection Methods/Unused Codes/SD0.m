@@ -1,9 +1,10 @@
-function r_v = SD0(y_v, H_m, d, cons, consEnergy)
-    
-    y_v = [real(y_v); imag(y_v)];
+function r_v = SD0(y_v, H_m, d, cons, consEnergy, mod)
+    yr_v = wrapper(y_v, H_m, consEnergy, mod);
+
+    y_v = [real(yr_v); imag(yr_v)];
     H_m = [real(H_m), -imag(H_m); imag(H_m), real(H_m)];
 
-    [m, n] = size(H_m);
+    [~, m] = size(H_m);
     dp_v = zeros(m, 1);
     z_v = zeros(m, 1);
     UBx_v = zeros(m, 1);
@@ -12,24 +13,27 @@ function r_v = SD0(y_v, H_m, d, cons, consEnergy)
     X_m = [];
 
     [Q_m, R_m] = qr(H_m);
-    R_m = R_m(1:n, :);
-    Q1_m = Q_m(:, 1:n);
-    Q2_m = Q_m(:, n+1:end);
+    R_m = R_m(1:m, :);
+    Q1_m = Q_m(:, 1:m);
+    Q2_m = Q_m(:, m+1:end);
 
-    yr_v = (y_v*sqrt(consEnergy) + sum(H_m, 2))/2;
-
-    yp_v = Q1_m'*yr_v;
-    k = m;
-    dp_v(m) = sqrt(d^2 - norm(Q2_m'*yr_v)^2);
-    z_v(m) = yp_v(m);
-
-    [~, ~, ~, ~, ~, X_m] = func2(k, m, R_m, x_v, z_v, yp_v, dp_v, UBx_v, X_m);
     
-    [~, indx] = min(vecnorm(yr_v - H_m*X_m));
+    yp_v = Q1_m'*y_v;
+    
+
+    while isempty(X_m)
+        k = m;
+        z_v(m) = yp_v(m);
+        dp_v(m) = sqrt(d^2 - norm(Q2_m'*y_v)^2);
+        [k, x_v, z_v, dp_v, UBx_v, X_m] = func2(k, m, R_m, x_v, z_v, y_v, dp_v, UBx_v, X_m);
+        d = d+0.1;
+    end
+    
+    [~, indx] = min(vecnorm(y_v - H_m*X_m));
     
     r_v = X_m(1:m/2, indx) + 1j*X_m(m/2+1:m, indx);
 
-    r_v = (2*r_v - (1+1j))/sqrt(consEnergy);
+    r_v = unwrapper(r_v, consEnergy, mod);
     [~, r_v] = min((r_v-cons).^2, [], 2);
 end
 

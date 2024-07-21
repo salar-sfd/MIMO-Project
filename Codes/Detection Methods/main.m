@@ -6,11 +6,11 @@ mod = 'qpsk';                                                % Modulation Name
 % methods_c = {'SD'};
 methods_c = {'SD', 'ZF', 'MMSE', 'LRA-ZF'};
 
-N = 3.072e5;                                                % Number of Bits 
+N = 3.072e6;                                                % Number of Bits 
 k = 2;                                                      % Bits per Symbol
 M = 2^k;                                                    % Modulation Order
-Nt = 2;                                                     % Number of Transmit Antennas                                             
-Nr = 2;                                                     % Number of Recieve Antennas
+Nt = 4;                                                     % Number of Transmit Antennas                                             
+Nr = 4;                                                     % Number of Recieve Antennas
 T = N/(k*Nt);                                               % Number of Transmission Cycles
 H0 = 1;                                                     % Channel Parameter Power
 
@@ -52,10 +52,4 @@ title(['Pe_{bits}   (', mod, ', M=', num2str(M), ', Nt=', num2str(Nt), ', Nr=', 
 xlabel('SNR (dB)')
 ylabel('Pe')
 grid('on')
-legend('SD', 'Zf', 'MMSE', 'LRA-ZF')
-
-%% Repository
-% helper_m = ones(M, Nr).*(0:M-1).';
-
-%             r_v = (round(((pinv(H_m)*y_v)*sqrt(consEnergy)-(1+1j))/2)*2+(1+1j))/sqrt(consEnergy);
-%             w_v = helper_m((r_v==cons).');
+legend('SD', 'ZF', 'MMSE', 'LRA-ZF')

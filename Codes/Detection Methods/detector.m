@@ -9,6 +9,6 @@ function r_v = detector(y_v, H_m, snr, N0, Nt, Nr, cons, consEnergy, method, mod
         case 'LRA-MMSE'
             r_v = LRA(y_v, H_m, snr, cons, consEnergy, 0.75, 'MMSE', mod);
         case 'SD'
-            r_v = SD(y_v, H_m, 0, cons, consEnergy, mod);
+            r_v = SD(y_v, H_m, 0.7, cons, consEnergy, mod);
     end
 end
