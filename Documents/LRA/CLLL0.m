@@ -1,4 +1,4 @@
-function B_reduced = CLLL2(B)
+function B_reduced = CLLL0(B)
 
 % LLL algorithm of lattice reduction for complex-valued lattices
 
