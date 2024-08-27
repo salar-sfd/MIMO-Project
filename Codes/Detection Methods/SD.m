@@ -59,7 +59,11 @@ function r_v = SD(y_v, H_m, d, cons, consEnergy, mod)
                         flag = 2;
                     end
                 case 6
-                    X_m = [X_m, x_v];
+                    xtemp_v = unwrapper(x_v(1:m/2) + 1j*x_v(m/2+1:m), consEnergy, mod);
+                    xtemp_v = [real(xtemp_v); imag(xtemp_v)];
+                    if(all((min(real(cons))<=xtemp_v) & xtemp_v<=max(real(cons))))
+                        X_m = [X_m, x_v];
+                    end
                     flag = 3;
             end
         end
