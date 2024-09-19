@@ -1,4 +1,4 @@
-function [Hp_m, u_m] = GramSchmidt(H_m)
+function [Hp_m, u_m] = gramSchmidt(H_m)
     N = size(H_m, 2);
     Hp_m = H_m.*0;
     u_m = eye(N);

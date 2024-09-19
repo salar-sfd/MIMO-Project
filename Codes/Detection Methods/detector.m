@@ -10,5 +10,7 @@ function r_v = detector(y_v, H_m, snr, N0, Nt, Nr, cons, consEnergy, method, mod
             r_v = LRA(y_v, H_m, snr, cons, consEnergy, 0.75, 'MMSE', mod);
         case 'SD'
             r_v = SD(y_v, H_m, 0.7, cons, consEnergy, mod);
+        case 'OGD'
+            r_v = OGD(y_v, H_m, cons, consEnergy, mod);
     end
 end

@@ -2,11 +2,12 @@ clc, clear
 close all
 
 %% Initialization
-mod = 'qam';                                                % Modulation Name                                 
-methods_c = {'SD', 'ZF', 'MMSE', 'LRA-ZF'};
+mod = 'qpsk';                                                % Modulation Name                                 
+% methods_c = {'SD', 'ZF', 'MMSE', 'LRA-ZF'};
+methods_c = {'OGD'};
 
 N = 3.072e6;                                                % Number of Bits 
-k = 6;                                                      % Bits per Symbol
+k = 2;                                                      % Bits per Symbol
 M = 2^k;                                                    % Modulation Order
 Nt = 4;                                                     % Number of Transmit Antennas                                             
 Nr = 4;                                                     % Number of Recieve Antennas

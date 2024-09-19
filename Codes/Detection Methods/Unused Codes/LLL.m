@@ -3,7 +3,7 @@ function [H_m, M_m] = LLL(H_m, delta)
     N = size(H_m, 2);
     while(true)
         % Preliminaries
-        [~, u_m] = GramSchmidt(H_m);
+        [~, u_m] = gramSchmidt(H_m);
         M_m = eye(N);
     
         % Reduction
@@ -13,7 +13,7 @@ function [H_m, M_m] = LLL(H_m, delta)
                 M_m(:, i) = M_m(:, i) - round(u_m(j, i)) * M_m(:, j);
             end
         end
-        [Hp_m, u_m] = GramSchmidt(H_m);
+        [Hp_m, u_m] = gramSchmidt(H_m);
     
         % Swap
         flag = 0;
