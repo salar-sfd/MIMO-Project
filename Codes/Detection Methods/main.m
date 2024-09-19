@@ -2,7 +2,7 @@ clc, clear
 close all
 
 %% Initialization
-mod = 'qpsk';                                                % Modulation Name                                 
+mod = 'qam';                                                % Modulation Name                                 
 % methods_c = {'SD', 'ZF', 'MMSE', 'LRA-ZF'};
 methods_c = {'OGD'};
 
@@ -14,7 +14,8 @@ Nr = 4;                                                     % Number of Recieve 
 T = N/(k*Nt);                                               % Number of Transmission Cycles
 H0 = 1;                                                     % Channel Parameter Power
 
-snrDB_v = 20:5:40;
+% snrDB_v = 20:5:40;
+snrDB_v = 1000;
 snr_v = 10.^(snrDB_v./10);
 isGray = 1;
 
