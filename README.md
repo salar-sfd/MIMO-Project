@@ -10,6 +10,7 @@ This project implements various **MIMO (Multiple-Input, Multiple-Output) detecti
 
 The implementation allows simulation of these detection techniques in different MIMO settings, focusing on bit error rate (BER) performance evaluation over different SNR (Signal-to-Noise Ratio) values.
 
+![MIMO](Images\1.png)
 
 ## Table of Contents
 
@@ -101,9 +102,9 @@ The main script runs the simulation, initializes key parameters, and selects the
 ## Output Examples
 A simulation output is showed below with the refrence graph for comparison. Outputs are figures with two subplots for showing SER and BER for each detection method:
 
-![Ref](Images\1.png)
+![Ref](Images\2.png)
 <br>
-![Simulation](Images\2.png)
+![Simulation](Images\3.png)
 
 ## How to Run
 
