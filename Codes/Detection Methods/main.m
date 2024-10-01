@@ -4,9 +4,9 @@ close all
 %% Initialization
 mod = 'qam';                                                % Modulation Name                                 
 % methods_c = {'SD', 'ZF', 'MMSE', 'LRA-ZF'};
-methods_c = {'OGD'};
+methods_c = {'ZF', 'OGD'};
 
-N = 3.072e6;                                                % Number of Bits 
+N = 3.072e4;                                                % Number of Bits 
 k = 2;                                                      % Bits per Symbol
 M = 2^k;                                                    % Modulation Order
 Nt = 4;                                                     % Number of Transmit Antennas                                             
@@ -14,8 +14,8 @@ Nr = 4;                                                     % Number of Recieve 
 T = N/(k*Nt);                                               % Number of Transmission Cycles
 H0 = 1;                                                     % Channel Parameter Power
 
-% snrDB_v = 20:5:40;
-snrDB_v = 1000;
+snrDB_v = 20:5:40;
+% snrDB_v = [20, 30, 50];
 snr_v = 10.^(snrDB_v./10);
 isGray = 1;
 
@@ -60,11 +60,11 @@ title(['Pe_{bits}   (', mod, ', M=', num2str(M), ', Nt=', num2str(Nt), ', Nr=', 
 xlabel('SNR (dB)')
 ylabel('Pe')
 grid('on')
-legend('SD', 'ZF', 'MMSE', 'LRA-ZF')
+legend(methods_c)
 
 subplot(2, 1, 2)
 title(['Pe_{symb}   (', mod, ', M=', num2str(M), ', Nt=', num2str(Nt), ', Nr=', num2str(Nr), ')'])
 xlabel('SNR (dB)')
 ylabel('Pe')
 grid('on')
-legend('SD', 'ZF', 'MMSE', 'LRA-ZF')
+legend(methods_c)
