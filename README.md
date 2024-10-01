@@ -28,7 +28,8 @@ The implementation allows simulation of these detection techniques in different 
    - [symbolIndexGenerator.m](#4-symbolindexgeneratorm)
    - [sizeReduce.m](#5-sizereducem)
    - [wrapper.m / unwrapper.m](#6-wrapperm--unwrapperm)
-4. [How to Run](#how-to-run)
+4. [Output Example](#output-example)
+5. [How to Run](#how-to-run)
 
 
 ## Project Structure
@@ -99,12 +100,14 @@ The main script runs the simulation, initializes key parameters, and selects the
 ### 6. [wrapper.m / unwrapper.m](#6-wrapperm--unwrapperm)
    - These functions are used in the LRA method. `wrapper.m` scales and shifts the problem to work with integer solutions, while `unwrapper.m` decodes the results back to constellation values.
 
-## Output Examples
+## Output Example
 A simulation output is showed below with the refrence graph for comparison. Outputs are figures with two subplots for showing SER and BER for each detection method:
 
-![Ref](Images/2.png)
-<br>
-![Simulation](Images/3.png)
+<div style="display: flex; justify-content: space-between;">
+  <img src="Images/3.png" alt="Simulation" style="width: 44%; margin-right: 1%;">
+  <img src="Images/2.png" alt="Refrence" style="width: 53%;">
+</div>
+
 
 ## How to Run
 
