@@ -104,7 +104,7 @@ The main script runs the simulation, initializes key parameters, and selects the
 A simulation output is showed below with the refrence graph for comparison. Outputs are figures with two subplots for showing SER and BER for each detection method:
 
 <div style="display: flex; justify-content: space-between;">
-  <img src="Images/3.png" alt="Simulation" style="width: 44%; margin-right: 1%;">
+  <img src="Images/3.png" alt="Simulation" style="width: 43%; margin-right: 1%;">
   <img src="Images/2.png" alt="Refrence" style="width: 53%;">
 </div>
 
