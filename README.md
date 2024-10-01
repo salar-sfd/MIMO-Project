@@ -105,7 +105,7 @@ A simulation output is showed below with the refrence graph for comparison. Outp
 
 <div style="display: flex; justify-content: space-between;">
   <img src="Images/3.png" alt="Simulation" style="width: 43%; margin-right: 1%;">
-  <img src="Images/2.png" alt="Refrence" style="width: 53%;">
+  <img src="Images/2.png" alt="Refrence" style="width: 52%;">
 </div>
 
 
