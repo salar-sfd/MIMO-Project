@@ -30,7 +30,7 @@ The implementation allows simulation of these detection techniques in different 
    - [wrapper.m / unwrapper.m](#6-wrapperm--unwrapperm)
 4. [Output Example](#output-example)
 5. [How to Run](#how-to-run)
-
+6. [Refrences](#refrences)
 
 ## Project Structure
 
@@ -126,3 +126,17 @@ A simulation output is showed below with the refrence graph for comparison. Outp
 
 4. View the resulting BER and SER plots for each detection method to compare performance.
 
+## References
+
+This project is based on several books and research papers:
+
+- General Knowledge About MIMO
+   - [MIMO Processing for 4G and Beyond](https://www.routledge.com/MIMO-Processing-for-4G-and-Beyond-Fundamentals-and-Evolution/daSilva-Monteiro/p/book/9781138033979?srsltid=AfmBOorIMY50--PZ4d7Fj0wxVLR855Y4Azan6QII4Q0n7_1WEMVRGRas)
+
+- Lattice Reduction Algorithm
+   - [Complex Lattice Reduction Algorithm for Low-Complexity MIMO Detection](https://arxiv.org/abs/cs/0607078)
+   - [Introduction To Mathematical Cryptography 436-448](https://www.scribd.com/document/733978071/Hoffstein2015-Introduction-to-Mathematical-Cryptography-436-448)
+
+- Sphere Decoding Algorithm
+   - [On the sphere-decoding algorithm I. Expected complexity](https://ieeexplore.ieee.org/document/1468474)
+   - [Improved radius selection in sphere decoder for MIMO System](https://www.researchgate.net/publication/269302276_Improved_radius_selection_in_sphere_decoder_for_MIMO_System)
