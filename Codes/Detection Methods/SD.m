@@ -1,5 +1,5 @@
-function r_v = SD(y_v, H_m, d, cons, consEnergy, mod)
-    yr_v = wrapper(y_v, H_m, consEnergy, mod);
+function r_v = SD(y_v, H_m, d, cons, consEnergy, modulation)
+    yr_v = wrapper(y_v, H_m, consEnergy, modulation);
 
     y_v = [real(yr_v); imag(yr_v)];
     H_m = [real(H_m), -imag(H_m); imag(H_m), real(H_m)];
@@ -59,7 +59,7 @@ function r_v = SD(y_v, H_m, d, cons, consEnergy, mod)
                         flag = 2;
                     end
                 case 6
-                    xtemp_v = unwrapper(x_v(1:m/2) + 1j*x_v(m/2+1:m), consEnergy, mod);
+                    xtemp_v = unwrapper(x_v(1:m/2) + 1j*x_v(m/2+1:m), consEnergy, modulation);
                     xtemp_v = [real(xtemp_v); imag(xtemp_v)];
                     if(all((min(real(cons))<=xtemp_v) & xtemp_v<=max(real(cons))))
                         X_m = [X_m, x_v];
@@ -74,6 +74,6 @@ function r_v = SD(y_v, H_m, d, cons, consEnergy, mod)
     
     r_v = X_m(1:m/2, indx) + 1j*X_m(m/2+1:m, indx);
 
-    r_v = unwrapper(r_v, consEnergy, mod);
+    r_v = unwrapper(r_v, consEnergy, modulation);
     [~, r_v] = min((r_v-cons).^2, [], 2);
 end

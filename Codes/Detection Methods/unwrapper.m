@@ -1,5 +1,5 @@
-function [r_v] = unwrapper(r_v, consEnergy, mod)
-    switch mod
+function [r_v] = unwrapper(r_v, consEnergy, modulation)
+    switch modulation
         case 'pam'
             r_v = (2*r_v - 1)/sqrt(consEnergy);
         case 'qam'
