@@ -1,4 +1,5 @@
-function r_v = SD(y_v, H_m, d, cons, consEnergy, modulation)
+function [r_v, simTime] = SD(y_v, H_m, d, cons, consEnergy, modulation)
+    tic
     yr_v = wrapper(y_v, H_m, consEnergy, modulation);
 
     y_v = [real(yr_v); imag(yr_v)];
@@ -76,4 +77,5 @@ function r_v = SD(y_v, H_m, d, cons, consEnergy, modulation)
 
     r_v = unwrapper(r_v, consEnergy, modulation);
     [~, r_v] = min((r_v-cons).^2, [], 2);
+    simTime = toc;
 end
