@@ -1,4 +1,5 @@
-function r_v = LRA(y_v, H_m, snr, cons, consEnergy, delta, method, modulation)
+function [r_v, simTime] = LRA(y_v, H_m, snr, cons, consEnergy, delta, method, modulation)
+    tic
 
     [yred_v] = wrapper(y_v, H_m, consEnergy, modulation);
 
@@ -18,5 +19,6 @@ function r_v = LRA(y_v, H_m, snr, cons, consEnergy, delta, method, modulation)
     r_v = unwrapper(U_m*z_v, consEnergy, modulation);
 
     [~, r_v] = min((r_v-cons).^2, [], 2);
+    simTime = toc;
 end
 
