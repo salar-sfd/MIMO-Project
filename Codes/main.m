@@ -3,9 +3,9 @@ close all
 t_id = tic;
 %% Initialization
 modulation = 'qam';                                         % Modulation Name                                 
-methods_c = {'SD', 'ZF', 'MMSE', 'LRA-ZF'};
+methods_c = {'ZF', 'MMSE', 'LRA (method=ZF)'};
 
-N = 3.072e3;                                                % Number of Bits 
+N = 3.072e6;                                                % Number of Bits 
 k = 6;                                                      % Bits per Symbol
 M = 2^k;                                                    % Modulation Order
 Nt = 64;                                                    % Number of Transmit Antennas                                             
@@ -14,7 +14,7 @@ T = N/(k*Nt);                                               % Number of Transmis
 H0 = 1;                                                     % Channel Parameter Power
 
 isGray = 1;
-snrDB_v = 10:10:40;
+snrDB_v = 10:10:60;
 snr_v = 10.^(snrDB_v./10);
 [cons, consEnergy] = constellation(M, modulation);
 

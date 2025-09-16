@@ -8,10 +8,10 @@ function detector = makeDetector(method, cons, consEnergy, modulation)
         case 'MMSE'
             detector = @(y_v,H_m,snr,N0,Nt,Nr) MMSE(y_v, H_m, snr, cons);
 
-        case 'LRA-ZF'
-            alpha = getOr(params,'alpha',0.75);
-            alpha = getOr(params,'alpha',0.75);
-            detector = @(y_v,H_m,snr,N0,Nt,Nr) LRA(y_v, H_m, snr, cons, consEnergy, alpha, 'ZF', modulation);
+        case 'LRA'
+            alpha = getOr(params, 'alpha', 0.75);
+            method = getOr(params, 'method', 'ZF');
+            detector = @(y_v, H_m, snr, N0, Nt, Nr) LRA(y_v, H_m, snr, cons, consEnergy, alpha, method, modulation);
 
         case 'LRA-MMSE'
             alpha = getOr(params,'alpha',0.75);
@@ -43,7 +43,7 @@ function [name, params] = parseMethodString(s)
     s = strtrim(s);
     if numel(s)>=2 && ((s(1)=='"' && s(end)=='"')||(s(1)=='''' && s(end)=='''')), s=s(2:end-1); s=strtrim(s); end
 
-    name = regexp(s, '^[^(]+', 'match', 'once');
+    name = strtrim(regexp(s, '^[^(]+', 'match', 'once'));
     argCell = regexp(s, '\((.*?)\)', 'tokens', 'once'); 
     if isempty(argCell), return; end
     argStr = argCell{1};
