@@ -2,7 +2,8 @@ function [r_v, simTime] = SZF(y_v, H_m, snr, cons, consEnergy)
     tic
     [Nr, Nt] = size(H_m);
     M = length(cons);
-    samples = 2^Nr;
+%     samples = 2^Nr;
+    samples = 256;
     N0 = Nt/snr;
     W_m = pinv(H_m);
     r_v = W_m*y_v;

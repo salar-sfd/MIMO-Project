@@ -1,4 +1,5 @@
-function r_v = RHO(y_v, H_m, cons, consEnergy, modulation, sigma, d)
+function [r_v, simTime] = RHO(y_v, H_m, cons, consEnergy, modulation, sigma, d)
+    tic
     [yr_v] = wrapper(y_v, H_m, consEnergy, modulation);
     
     y_v = [real(yr_v); imag(yr_v)];
@@ -215,4 +216,5 @@ function [s1, s2_v] = calculateSums4(y_v, H_m, M, K, sigma)
         end
         s2_v(i) = simplify(z); 
     end
+    simTime = toc;
 end

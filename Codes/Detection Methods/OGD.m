@@ -1,4 +1,5 @@
-function r_v = OGD(y_v, H_m, cons, consEnergy, modulation)
+function [r_v, simTime] = OGD(y_v, H_m, cons, consEnergy, modulation)
+    tic
 %     [yr_v] = wrapper(y_v, H_m, consEnergy, modulation);
     
     y_v = [real(y_v); imag(y_v)];
@@ -43,5 +44,6 @@ function r_v = OGD(y_v, H_m, cons, consEnergy, modulation)
     r_v = x_v(1:m/2) + 1j*x_v(m/2+1:m);
 %     r_v = unwrapper(r_v, consEnergy, modulation);
     [~, r_v] = min((r_v-cons).^2, [], 2);
+    simTime = toc;
 end
 
