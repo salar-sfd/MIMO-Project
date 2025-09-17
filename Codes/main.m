@@ -5,7 +5,7 @@ t_id = tic;
 modulation = 'qam';                                         % Modulation Name                                 
 methods_c = {'ZF', 'MMSE', 'LRA (method=ZF)'};
 
-N = 3.072e6;                                                % Number of Bits 
+N = 3.072e7;                                                % Number of Bits 
 k = 6;                                                      % Bits per Symbol
 M = 2^k;                                                    % Modulation Order
 Nt = 64;                                                    % Number of Transmit Antennas                                             

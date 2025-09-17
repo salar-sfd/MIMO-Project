@@ -12,11 +12,7 @@ function detector = makeDetector(method, cons, consEnergy, modulation)
             alpha = getOr(params, 'alpha', 0.75);
             method = getOr(params, 'method', 'ZF');
             detector = @(y_v, H_m, snr, N0, Nt, Nr) LRA(y_v, H_m, snr, cons, consEnergy, alpha, method, modulation);
-
-        case 'LRA-MMSE'
-            alpha = getOr(params,'alpha',0.75);
-            detector = @(y_v,H_m,snr,N0,Nt,Nr) LRA(y_v, H_m, snr, cons, consEnergy, alpha, 'MMSE', modulation);
-
+            
         case 'SD'
             d = getOr(params,'d',0.7);
             detector = @(y_v,H_m,snr,N0,Nt,Nr) SD(y_v, H_m, d, cons, consEnergy, modulation);
