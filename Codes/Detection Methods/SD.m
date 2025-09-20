@@ -68,7 +68,7 @@ function [r_v, simTime] = SD(y_v, H_m, d, cons, consEnergy, modulation)
                     flag = 3;
             end
         end
-        d = d+0.2;
+        d = d+0.5;
     end
     
     [~, indx] = min(vecnorm(y_v - H_m*X_m));
