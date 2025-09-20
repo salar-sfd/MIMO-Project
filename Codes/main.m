@@ -27,6 +27,7 @@ for method = methods_c
     for snr = snr_v
         SumSimTime = 0;
         txBit_m =  randi([0 1], N/k, k);
+        rxBit_m = txBit_m*.0;
         [txSymbolIndex_v, biMatrix_m] = symbolIndexGenerator(txBit_m, N, k, isGray);
         z_v = cons(txSymbolIndex_v);
         z_m = reshape(z_v, Nt, T);
