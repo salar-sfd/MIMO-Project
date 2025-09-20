@@ -1,5 +1,6 @@
 # List of untracked files and folders to ignore
 Documents/
+Codes/mainBeta.m
 Codes/Detection Methods/Under Development/
 Codes/Detection Methods/Unused Codes/
 Codes/Helper Functions/makeDetectorBeta.m
