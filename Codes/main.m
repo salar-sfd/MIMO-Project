@@ -5,16 +5,16 @@ t_id = tic;
 modulation = 'qam';                                         % Modulation Name                                 
 methods_c = {'ZF', 'MMSE', 'LRA (method=ZF)'};
 
-N = 3.072e7;                                                % Number of Bits 
-k = 6;                                                      % Bits per Symbol
+k = 8;                                                      % Bits per Symbol
 M = 2^k;                                                    % Modulation Order
-Nt = 64;                                                    % Number of Transmit Antennas                                             
-Nr = 64;                                                    % Number of Recieve Antennas
-T = N/(k*Nt);                                               % Number of Transmission Cycles
+Nt = 16;                                                    % Number of Transmit Antennas                                             
+Nr = 16;                                                    % Number of Recieve Antennas
+minN = 1e5;                                                 % Minimum Number of Generated Bits for Lowest SNR
+maxN = 1e6;                                                 % Maximum Number of Generated Bits for Highest SNR
 H0 = 1;                                                     % Channel Parameter Power
 
 isGray = 1;
-snrDB_v = 10:10:60;
+snrDB_v = 10:5:50;
 snr_v = 10.^(snrDB_v./10);
 [cons, consEnergy] = constellation(M, modulation);
 
@@ -24,8 +24,11 @@ for method = methods_c
     PeSymb_v = [];
     avgSimTime = [];
     detector = makeDetector(method{1}, cons, consEnergy, modulation);
-    for snr = snr_v
+    for i = 1:length(snr_v)
+        snr = snr_v(i);
+
         SumSimTime = 0;
+        [N, T] = scheduler(i, length(snr_v), minN, maxN, k, Nt);
         txBit_m =  randi([0 1], N/k, k);
         rxBit_m = txBit_m*.0;
         [txSymbolIndex_v, biMatrix_m] = symbolIndexGenerator(txBit_m, N, k, isGray);
@@ -46,9 +49,11 @@ for method = methods_c
             [rxSymbolIndex_m(:, t), simTime] = detector(y_v, H_m, snr, N0, Nt, Nr);
             SumSimTime = SumSimTime + simTime;
         end
+
         for t = 1:T
             rxBit_m((t-1)*Nt+1:t*Nt, :) = biMatrix_m(rxSymbolIndex_m(:, t), :);
         end
+        
         PeBits_v = [PeBits_v, sum(txBit_m~=rxBit_m, "all")/N];
         PeSymb_v = [PeSymb_v, sum(sum(txBit_m~=rxBit_m, 2)~=0)/(N/k)];
         avgSimTime = [avgSimTime, SumSimTime/T];
